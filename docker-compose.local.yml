@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  postgres_rate_generator:
+    image: postgres
+    container_name: postgres_rate_generator
+    hostname: postgres_rate_generator
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:5432
+    networks:
+      - local_network
+    restart: unless-stopped
+
+networks:
+  local_network: {}
