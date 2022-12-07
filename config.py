@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union, List
 
 from pydantic import BaseSettings, HttpUrl, PostgresDsn, validator
 
@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = 'Tickers rate service'
     PROJECT_VERSION: str = '1.0'
     PROJECT_DESCRIPTION: str = 'Visualizes tickers rate by graphics'
+    DEBUG: bool
 
     POSTGRES_HOST: str
     POSTGRES_PORT: str

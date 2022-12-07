@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from apis.rest_api.api_v1.routers import api_router
 from config import settings
-from db import setup_db
+from db.session import setup_db
 
 app = FastAPI(
     debug=settings.DEBUG,
@@ -16,7 +16,7 @@ app = FastAPI(
 
 async def startup(app: FastAPI) -> None:
     app.state.settings = settings
-    app.state.db_engine = await setup_db(settings.POSTGRES)
+    app.state.db_engine = await setup_db(settings)
 
 
 async def shutdown(app: FastAPI) -> None:
